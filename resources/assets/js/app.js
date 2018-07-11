@@ -1,8 +1,15 @@
 require('./bootstrap');
 
-// Vue Router
+// Imports
+import Vuex from 'vuex';
 import VueRouter from 'vue-router';
+
+// Vue Use
+Vue.use(Vuex);
 Vue.use(VueRouter);
+
+// In App Imports
+import store from './store';
 import router from './routes';
 
 // Global Components

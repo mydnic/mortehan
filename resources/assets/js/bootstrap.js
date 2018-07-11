@@ -43,9 +43,16 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
             // Registration was successful
-            window.addEventListener('beforeinstallprompt', () => {
-                prompt();
-            })
+            window.addEventListener("beforeinstallprompt", function (e) {
+                e.preventDefault(); // Prevents immediate prompt display
+
+                // Shows prompt after a user clicks an "install" button
+                installButton.addEventListener("click", function (e) {
+                    e.prompt();
+                });
+
+                installButton.hidden = false; // Make button operable
+            });
         }, function (err) {
             // registration failed :(
             console.log('ServiceWorker registration failed: ', err);

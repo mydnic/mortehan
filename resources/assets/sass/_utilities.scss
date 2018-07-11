@@ -1,0 +1,56 @@
+.z-index-1 {z-index: 1;}
+.z-index-2 {z-index: 2;}
+
+.m-0-auto {margin:0 auto;}
+
+.ml-10 {margin-left: 10px;}
+.ml-25 {margin-left: 25px;}
+.ml-50 {margin-left: 50px;}
+
+.mr-25 {margin-right: 25px;}
+.mr-50 {margin-right: 50px;}
+
+.mt-10 {margin-top: 10px;}
+.mt-25 {margin-top: 25px;}
+.mt-50 {margin-top: 50px;}
+.mt-100 {margin-top: 100px;}
+
+.mb-0 {margin-bottom: 0px !important;}
+.mb-10 {margin-bottom: 10px;}
+.mb-25 {margin-bottom: 25px;}
+.mb-50 {margin-bottom: 50px;}
+.mb-100 {margin-bottom: 100px;}
+
+.p-5 {padding: 5px;}
+.p-25 {padding: 25px;}
+
+.pt-25 {padding-top: 25px;}
+
+.pos-rel {position: relative;}
+.pos-ab {position: absolute;}
+
+.cursor-normal {cursor: initial;}
+
+.is-rounded {border-radius: 10000px;}
+
+.hover-underlined {&:hover{text-decoration: underline;}}
+.cursor-pointer {cursor: pointer;}
+
+.has-border-light-top {border-top: 1px solid $light;}
+.has-border-light-right {border-right: 1px solid $light;}
+.has-border-light-left {border-left: 1px solid $light;}
+
+.has-border-size-2 {border-width: 2px;}
+
+.has-content-vcentered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fz-40 {font-size: 40px;}
+.fz-12 {font-size: 12px;}
+
+.has-radius {border-radius: $radius;}
+
+.is-half-transparent {opacity: .5;}

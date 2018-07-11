@@ -11,6 +11,6 @@
             "type": "image/jpg"
         }
     ],
-    "start_url": "/?launcher=true",
+    "start_url": "/splash",
     "display": "standalone"
 }

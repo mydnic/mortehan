@@ -36,7 +36,7 @@
 </head>
 <body>
     <div id="app">
-        Please enable Javascript
+        <noscript>Sorry, your browser does not support JavaScript!</noscript>
         <router-view></router-view>
         <notification></notification>
     </div>

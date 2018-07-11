@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#29487c"/>
 
     <link rel="icon" href="/img/icon.png" type="image/png"/>
 

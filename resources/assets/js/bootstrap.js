@@ -40,11 +40,13 @@ window.flash = function (message, level = 'success') {
  * Check PWA Support
  */
 if ('serviceWorker' in navigator && 'PushManager' in window) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
             // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
+            window.addEventListener('beforeinstallprompt', () => {
+                prompt();
+            })
+        }, function (err) {
             // registration failed :(
             console.log('ServiceWorker registration failed: ', err);
         });

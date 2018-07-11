@@ -13,6 +13,7 @@ mix.webpackConfig({
             handleFetch: true,
             dynamicUrlToDependencies: {
                 '/': ['resources/views/app.blade.php'],
+                '/splash': ['resources/views/splash.blade.php'],
             },
             staticFileGlobsIgnorePatterns: [/\.map$/, /mix-manifest\.json$/, /manifest\.json$/, /service-worker\.js$/],
             runtimeCaching: [

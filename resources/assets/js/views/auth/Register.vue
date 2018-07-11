@@ -16,9 +16,10 @@
                         </div>
                     </div>
                     <div class="field">
-                        <button class="button" @click="login">
-                            Se connecter
-                        </button>
+                        <label for="password_confirmation" class="label">Password Confirmation</label>
+                        <div class="control">
+                            <input type="password" class="input" id="password_confirmation" v-model="passwordConfirmation">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -27,20 +28,12 @@
 </template>
 
 <script>
-import auth from '../../api/auth.js'
 export default {
     data() {
         return {
             email: undefined,
             password: undefined,
-        }
-    },
-    methods: {
-        login() {
-            this.auth.login(this.email, this.password)
-            .then(response => {
-                this.$store.commit('login', response.token);
-            })
+            passwordConfirmation: undefined,
         }
     }
 }

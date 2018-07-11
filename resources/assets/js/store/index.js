@@ -1,5 +1,5 @@
 // Api's
-import dates from '../api/travel';
+import travel from '../api/travel';
 
 // Store Object
 export default {
@@ -20,9 +20,10 @@ export default {
     },
     actions: {
         getCurrentTravel() {
-            return travel.getCurrentTravel(dates => {
-                return travel;
-            })
+            return travel.getCurrentTravel()
+                .then(travel => {
+                    return travel;
+                })
         }
     }
 }

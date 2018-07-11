@@ -6,6 +6,12 @@
                     <h1 class="title">
                         Hello Bro
                     </h1>
+                    <router-link to="/login" class="button is-large">
+                        Connexion
+                    </router-link>
+                    <router-link to="/register" class="button is-large">
+                        Créer un compte
+                    </router-link>
                 </div>
             </div>
         </section>

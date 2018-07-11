@@ -36,6 +36,7 @@
 </head>
 <body>
     <div id="app">
+        Please enable Javascript
         <router-view></router-view>
         <notification></notification>
     </div>

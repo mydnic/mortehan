@@ -8,7 +8,7 @@ export default {
         travel: undefined,
     },
     mutations: {
-        login(state, user) {
+        login(state) {
             state.isLoggedIn = true;
         },
         logout(state) {

@@ -3,6 +3,12 @@
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="container">
+                    <div class="has-text-right">
+                        T'as pas de compte ?
+                        <router-link to="/register">
+                            Crées en un
+                        </router-link>
+                    </div>
                     <div class="field">
                         <label for="email" class="label">Email</label>
                         <div class="control">

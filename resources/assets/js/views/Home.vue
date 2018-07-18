@@ -19,7 +19,14 @@
 </template>
 
 <script>
-export default {
+import { mapState } from 'vuex';
 
+export default {
+    computed: mapState(['isLoggedIn']),
+    mounted() {
+        if (!this.isLoggedIn) {
+            this.$router.push({ name: 'login' });
+        }
+    }
 }
 </script>

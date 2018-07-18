@@ -1739,6 +1739,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -1760,7 +1761,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])(['isLoggedIn']),
+    mounted: function mounted() {
+        if (!this.isLoggedIn) {
+            this.$router.push({ name: 'login' });
+        }
+    }
+});
 
 /***/ }),
 
@@ -1770,6 +1780,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_auth_js__ = __webpack_require__("./resources/assets/js/api/auth.js");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1826,6 +1842,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_auth__ = __webpack_require__("./resources/assets/js/api/auth.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1856,13 +1895,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            name: undefined,
             email: undefined,
             password: undefined,
-            passwordConfirmation: undefined
+            password_confirmation: undefined,
+            isLoading: false
         };
+    },
+
+    methods: {
+        register: function register() {
+            var _this = this;
+
+            this.isLoading = true;
+            __WEBPACK_IMPORTED_MODULE_0__api_auth__["a" /* default */].register(this.$data).then(function (response) {
+                flash('T\'as réussi a créé ton compte, t\'es un bon toi !', 'success');
+                _this.isLoading = false;
+                _this.$router.push({ name: 'home' });
+            }).catch(function (error) {
+                flash(error.data.error.message, 'danger');
+                _this.isLoading = false;
+            });
+        }
     }
 });
 
@@ -1891,7 +1950,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.flash.notification[data-v-66002d22] {\n  z-index: 99999999999;\n  position: fixed;\n  bottom: 30px;\n  right: 30px;\n  opacity: 0;\n  -webkit-transform: translate(100%);\n          transform: translate(100%);\n  -webkit-transition: all 0.8s ease-in-out;\n  transition: all 0.8s ease-in-out;\n}\n.flash.notification.is-visible[data-v-66002d22] {\n    -webkit-transform: translate(0);\n            transform: translate(0);\n    opacity: 1;\n}\n", ""]);
+exports.push([module.i, "\n.flash.notification[data-v-66002d22] {\n  z-index: 99999999999;\n  position: fixed;\n  bottom: 30px;\n  right: 30px;\n  left: 30px;\n  opacity: 0;\n  -webkit-transform: translateY(100%);\n          transform: translateY(100%);\n  -webkit-transition: all 0.8s ease-in-out;\n  transition: all 0.8s ease-in-out;\n}\n.flash.notification.is-visible[data-v-66002d22] {\n    -webkit-transform: translateY(0);\n            transform: translateY(0);\n    opacity: 1;\n}\n", ""]);
 
 // exports
 
@@ -19739,6 +19798,52 @@ var render = function() {
     _c("section", { staticClass: "hero is-fullheight" }, [
       _c("div", { staticClass: "hero-body" }, [
         _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            { staticClass: "has-text-right" },
+            [
+              _vm._v(
+                "\n                    T'as déjà un compte ?\n                    "
+              ),
+              _c("router-link", { attrs: { to: "/login" } }, [
+                _vm._v(
+                  "\n                        Connectes toi\n                    "
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label", attrs: { for: "name" } }, [
+              _vm._v("Nom")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text", id: "name" },
+                domProps: { value: _vm.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "field" }, [
             _c("label", { staticClass: "label", attrs: { for: "email" } }, [
               _vm._v("Email")
@@ -19771,7 +19876,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
             _c("label", { staticClass: "label", attrs: { for: "password" } }, [
-              _vm._v("Password")
+              _vm._v("Mot de passe")
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "control" }, [
@@ -19803,7 +19908,7 @@ var render = function() {
             _c(
               "label",
               { staticClass: "label", attrs: { for: "password_confirmation" } },
-              [_vm._v("Password Confirmation")]
+              [_vm._v("Confirmation du mot de passe")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "control" }, [
@@ -19812,23 +19917,40 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.passwordConfirmation,
-                    expression: "passwordConfirmation"
+                    value: _vm.password_confirmation,
+                    expression: "password_confirmation"
                   }
                 ],
                 staticClass: "input",
                 attrs: { type: "password", id: "password_confirmation" },
-                domProps: { value: _vm.passwordConfirmation },
+                domProps: { value: _vm.password_confirmation },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.passwordConfirmation = $event.target.value
+                    _vm.password_confirmation = $event.target.value
                   }
                 }
               })
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c(
+              "button",
+              {
+                staticClass: "button is-primary",
+                class: { "is-loading": _vm.isLoading },
+                attrs: { disabled: _vm.isLoading },
+                on: { click: _vm.register }
+              },
+              [
+                _vm._v(
+                  "\n                        Crée ton compte\n                    "
+                )
+              ]
+            )
           ])
         ])
       ])
@@ -19858,6 +19980,22 @@ var render = function() {
     _c("section", { staticClass: "hero is-fullheight" }, [
       _c("div", { staticClass: "hero-body" }, [
         _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            { staticClass: "has-text-right" },
+            [
+              _vm._v(
+                "\n                    T'as pas de compte ?\n                    "
+              ),
+              _c("router-link", { attrs: { to: "/register" } }, [
+                _vm._v(
+                  "\n                        Crées en un\n                    "
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c("div", { staticClass: "field" }, [
             _c("label", { staticClass: "label", attrs: { for: "email" } }, [
               _vm._v("Email")
@@ -33999,7 +34137,7 @@ module.exports = Vue;
 "use strict";
 /* unused harmony export Store */
 /* unused harmony export install */
-/* unused harmony export mapState */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapState; });
 /* unused harmony export mapMutations */
 /* unused harmony export mapGetters */
 /* unused harmony export mapActions */
@@ -35000,9 +35138,12 @@ module.exports = function(module) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony default export */ var _unused_webpack_default_export = ({
+/* harmony default export */ __webpack_exports__["a"] = ({
     login: function login(email, password) {
         return axios.post('/login', { email: email, password: password });
+    },
+    register: function register(data) {
+        return axios.post('/register', data);
     }
 });
 
@@ -35051,7 +35192,8 @@ Vue.component('check-animation', __webpack_require__("./resources/assets/js/comp
 // App Instance
 var app = new Vue({
     el: '#app',
-    router: new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */](__WEBPACK_IMPORTED_MODULE_3__routes__["a" /* default */])
+    router: new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */](__WEBPACK_IMPORTED_MODULE_3__routes__["a" /* default */]),
+    store: new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store(__WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */])
 });
 
 /***/ }),
@@ -35300,7 +35442,7 @@ module.exports = Component.exports
 "use strict";
 var routes = [
 // Home
-{ path: '/', name: 'home', component: __webpack_require__("./resources/assets/js/views/Home.vue") }, { path: '/register', component: __webpack_require__("./resources/assets/js/views/auth/Register.vue") }, { path: '/login', component: __webpack_require__("./resources/assets/js/views/auth/Login.vue") },
+{ path: '/', name: 'home', component: __webpack_require__("./resources/assets/js/views/Home.vue") }, { path: '/register', name: 'register', component: __webpack_require__("./resources/assets/js/views/auth/Register.vue") }, { path: '/login', name: 'login', component: __webpack_require__("./resources/assets/js/views/auth/Login.vue") },
 
 // 404
 { path: '*', redirect: { name: 'home' } }];
@@ -35322,13 +35464,13 @@ var routes = [
 
 
 // Store Object
-/* unused harmony default export */ var _unused_webpack_default_export = ({
+/* harmony default export */ __webpack_exports__["a"] = ({
     state: {
         isLoggedIn: !!localStorage.getItem('token'),
         travel: undefined
     },
     mutations: {
-        login: function login(state, user) {
+        login: function login(state) {
             state.isLoggedIn = true;
         },
         logout: function logout(state) {

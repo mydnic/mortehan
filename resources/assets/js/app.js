@@ -20,5 +20,6 @@ Vue.component('check-animation', require('./components/CheckAnimation.vue'));
 // App Instance
 const app = new Vue({
     el: '#app',
-    router: new VueRouter(router)
+    router: new VueRouter(router),
+    store: new Vuex.Store(store),
 });

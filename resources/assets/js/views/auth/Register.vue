@@ -3,6 +3,18 @@
         <section class="hero is-fullheight">
             <div class="hero-body">
                 <div class="container">
+                    <div class="has-text-right">
+                        T'as déjà un compte ?
+                        <router-link to="/login">
+                            Connectes toi
+                        </router-link>
+                    </div>
+                    <div class="field">
+                        <label for="name" class="label">Nom</label>
+                        <div class="control">
+                            <input type="text" class="input" id="name" v-model="name">
+                        </div>
+                    </div>
                     <div class="field">
                         <label for="email" class="label">Email</label>
                         <div class="control">
@@ -10,16 +22,26 @@
                         </div>
                     </div>
                     <div class="field">
-                        <label for="password" class="label">Password</label>
+                        <label for="password" class="label">Mot de passe</label>
                         <div class="control">
                             <input type="password" class="input" id="password" v-model="password">
                         </div>
                     </div>
                     <div class="field">
-                        <label for="password_confirmation" class="label">Password Confirmation</label>
+                        <label for="password_confirmation" class="label">Confirmation du mot de passe</label>
                         <div class="control">
-                            <input type="password" class="input" id="password_confirmation" v-model="passwordConfirmation">
+                            <input type="password" class="input" id="password_confirmation" v-model="password_confirmation">
                         </div>
+                    </div>
+                    <div class="field">
+                        <button
+                            class="button is-primary"
+                            @click="register"
+                            :class="{'is-loading': isLoading}"
+                            :disabled="isLoading"
+                        >
+                            Crée ton compte
+                        </button>
                     </div>
                 </div>
             </div>
@@ -28,12 +50,31 @@
 </template>
 
 <script>
+import auth from '../../api/auth';
+
 export default {
     data() {
         return {
+            name: undefined,
             email: undefined,
             password: undefined,
-            passwordConfirmation: undefined,
+            password_confirmation: undefined,
+            isLoading: false,
+        }
+    },
+    methods: {
+        register() {
+            this.isLoading = true;
+            auth.register(this.$data)
+                .then(response => {
+                    flash('T\'as réussi a créé ton compte, t\'es un bon toi !', 'success')
+                    this.isLoading = false;
+                    this.$router.push({ name: 'home' });
+                })
+                .catch(error => {
+                    flash(error.data.error.message, 'danger')
+                    this.isLoading = false;
+                })
         }
     }
 }

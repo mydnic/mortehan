@@ -11663,3 +11663,7 @@ label.panel-block:hover {
   opacity: .5;
 }
 
+a {
+  font-weight: bold;
+}
+

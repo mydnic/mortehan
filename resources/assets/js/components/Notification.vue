@@ -64,11 +64,12 @@ export default {
     position: fixed;
     bottom: 30px;
     right: 30px;
+    left: 30px;
     opacity: 0;
-    transform: translate(100%);
+    transform: translateY(100%);
     transition: all 0.8s ease-in-out;
     &.is-visible {
-        transform: translate(0);
+        transform: translateY(0);
         opacity: 1;
     }
 }

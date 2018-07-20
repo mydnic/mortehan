@@ -67,13 +67,17 @@ export default {
             this.isLoading = true;
             auth.register(this.$data)
                 .then(response => {
-                    flash('T\'as réussi a créé ton compte, t\'es un bon toi !', 'success')
                     this.isLoading = false;
+                    console.log(response.data);
+
+                    this.$store.commit('login', response.data);
                     this.$router.push({ name: 'home' });
+                    flash('T\'as réussi a créé ton compte, t\'es un bon toi !', 'success')
                 })
                 .catch(error => {
-                    flash(error.data.error.message, 'danger')
                     this.isLoading = false;
+                    this.errors = error.response.data.errors;
+                    flash(error.response.data.message, 'danger');
                 })
         }
     }

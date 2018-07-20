@@ -14,6 +14,7 @@
                         <div class="control">
                             <input type="email" class="input" id="email" v-model="email">
                         </div>
+                        <p class="help is-danger" v-if="errors.email" v-text="errors.email[0]"></p>
                     </div>
                     <div class="field">
                         <label for="password" class="label">Password</label>
@@ -22,7 +23,12 @@
                         </div>
                     </div>
                     <div class="field">
-                        <button class="button" @click="login">
+                        <button
+                            class="button is-primary"
+                            @click="login"
+                            :class="{'is-loading': isLoading}"
+                            :disabled="isLoading"
+                        >
                             Se connecter
                         </button>
                     </div>
@@ -34,19 +40,33 @@
 
 <script>
 import auth from '../../api/auth.js'
+
 export default {
     data() {
         return {
             email: undefined,
             password: undefined,
+            errors: [],
+            isLoading: false,
         }
     },
     methods: {
         login() {
-            this.auth.login(this.email, this.password)
-            .then(response => {
-                this.$store.commit('login', response.token);
+            this.isLoading = true;
+            auth.login({
+                email: this.email,
+                password: this.password
             })
+                .then(response => {
+                    this.isLoading = false;
+                    flash('Success coucuou', 'success');
+                    this.$store.commit('login', response.token);
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    this.errors = error.response.data.errors;
+                    flash(error.response.data.message, 'danger');
+                })
         }
     }
 }

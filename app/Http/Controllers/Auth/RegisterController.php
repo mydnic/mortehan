@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -69,6 +70,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'api_token' => (string) Str::uuid(),
         ]);
     }
 
@@ -80,6 +82,6 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        return $user;
+        return $user->token;
     }
 }

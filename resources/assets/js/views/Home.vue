@@ -6,12 +6,7 @@
                     <h1 class="title">
                         Hello Bro
                     </h1>
-                    <router-link to="/login" class="button is-large">
-                        Connexion
-                    </router-link>
-                    <router-link to="/register" class="button is-large">
-                        Créer un compte
-                    </router-link>
+                    <button class="button" @click="logout">Logout</button>
                 </div>
             </div>
         </section>
@@ -26,6 +21,11 @@ export default {
     mounted() {
         if (!this.isLoggedIn) {
             this.$router.push({ name: 'login' });
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.commit('logout');
         }
     }
 }

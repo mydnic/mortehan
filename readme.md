@@ -1,3 +1,4 @@
+
 ## Mortehan App
 
 This app aims to be a "swiss pocket knife" for our buddy-travel to Mortehan.
@@ -16,6 +17,7 @@ This app aims to be a "swiss pocket knife" for our buddy-travel to Mortehan.
 - Receive notification in the morning when it's your day to cook
 - The admins can set the dates of a future travel
 - Anyone can register, but the admin has to invite you into the event
+- blog for everyone
 
 ## How to Install
 

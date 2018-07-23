@@ -80,8 +80,6 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
-
         return $user->token;
     }
 }

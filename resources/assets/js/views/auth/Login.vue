@@ -12,14 +12,14 @@
                     <div class="field">
                         <label for="email" class="label">Email</label>
                         <div class="control">
-                            <input type="email" class="input" id="email" v-model="email">
+                            <input type="email" class="input" id="email" v-model="email" name="email">
                         </div>
                         <p class="help is-danger" v-if="errors.email" v-text="errors.email[0]"></p>
                     </div>
                     <div class="field">
                         <label for="password" class="label">Password</label>
                         <div class="control">
-                            <input type="password" class="input" id="password" v-model="password">
+                            <input type="password" class="input" id="password" v-model="password" name="password">
                         </div>
                     </div>
                     <div class="field">
@@ -59,10 +59,14 @@ export default {
             })
                 .then(response => {
                     this.isLoading = false;
+                    console.log(response, response.data);
+
                     flash('Success coucuou', 'success');
                     this.$store.commit('login', response.token);
                 })
                 .catch(error => {
+                    console.log(error.response);
+
                     this.isLoading = false;
                     this.errors = error.response.data.errors;
                     flash(error.response.data.message, 'danger');

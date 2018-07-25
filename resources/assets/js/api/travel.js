@@ -1,5 +1,5 @@
 export default {
     getCurrentTravel() {
-        return window.axios.get('/api/travel/current');
+        return axios.get('/api/travel/current');
     }
 }

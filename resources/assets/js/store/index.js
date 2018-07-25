@@ -14,14 +14,15 @@ export default {
     },
     mutations: {
         setTravel(state, travel) {
-            state.travel = travel;
+            state.travel = travel.id ? travel : null;
         }
     },
     actions: {
-        getCurrentTravel() {
+        getCurrentTravel({ commit }) {
             return travel.getCurrentTravel()
                 .then(travel => {
-                    return travel;
+                    commit('setTravel', travel.data)
+                    return travel.data;
                 })
         }
     }

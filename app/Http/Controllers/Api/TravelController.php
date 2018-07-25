@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Travel;
 use Illuminate\Http\Request;
 
-class TravelControler extends Controller
+class TravelController extends Controller
 {
     public function current()
     {

@@ -53,20 +53,21 @@ export default {
     methods: {
         login() {
             this.isLoading = true;
+            this.errors = [];
+
             auth.login({
                 email: this.email,
                 password: this.password
             })
                 .then(response => {
                     this.isLoading = false;
-                    console.log(response, response.data);
 
-                    flash('Success coucuou', 'success');
-                    this.$store.commit('login', response.token);
+                    this.$store.dispatch('login', response.data.api_token).then(() => {
+                        this.$router.push({ name: 'home' });
+                        flash('T\'es connecté bro !', 'success');
+                    })
                 })
                 .catch(error => {
-                    console.log(error.response);
-
                     this.isLoading = false;
                     this.errors = error.response.data.errors;
                     flash(error.response.data.message, 'danger');

@@ -5,15 +5,19 @@ export default {
     },
     mutations: {
         login(state, token) {
-            console.log(token);
-
-            localStorage.setItem('token', token)
+            state.isLoggedIn = true;
+            state.token = token;
+            localStorage.setItem('token', token);
         },
         logout(state) {
-
             localStorage.removeItem('token');
-
-            console.log(localStorage.getItem('token'));
+            state.isLoggedIn = false;
+            state.token = undefined;
         },
+    },
+    actions: {
+        login({ commit }, token) {
+            return commit('login', token);
+        }
     },
 }
